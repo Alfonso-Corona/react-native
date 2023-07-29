@@ -12,7 +12,7 @@ const AnswerListItem = ({ answer }) => {
                     <Entypo name="check" size={22} color="#8CCA72" style={{ marginTop: 10 }} />
                 )}
             </View>
-            <View style={styles.container}>
+            <View style={styles.containerBody}>
                 <Text style={styles.body}>{answer.body_markdown}</Text>
                 <Text style={styles.time}>
                     answered {new Date(answer.creation_date * 1000).toDateString()}
@@ -30,6 +30,15 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.5,
         borderColor: 'lightgray',
     },
+    containerBody: {
+        flexDirection: 'column',
+        marginBottom: 25,
+        paddingBottom: 20,
+        borderBottomWidth: 0.5,
+        borderColor: 'lightgray',
+        flex: 1,
+        flexGrow: 1,
+    },
     leftContainer: {
         paddingHorizontal: 10,
         alignItems: 'center',
@@ -45,6 +54,7 @@ const styles = StyleSheet.create({
     body: {
         lineHeight: 18,
         color: '#ffffff',
+        paddingHorizontal: 10,
     },
     time: {
         marginLeft: 'auto',

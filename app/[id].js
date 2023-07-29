@@ -15,16 +15,12 @@ const QuestionDetailsPage = () => {
         return <Text>Question not find</Text>
     }
 
-    /* return (
-        <View style={styles.container}>
-            <QuestionHeader question={question}/>
-        </View>
-    ); */
     return (
         <View style={styles.container}>
             <FlatList
                 data={answers.items}
                 renderItem={({ item }) => <AnswerListItem answer={item} />}
+                ListHeaderComponent={() => <QuestionHeader question={question}/>}
             />
         </View>
     );
@@ -34,7 +30,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 10,
-        backgroundColor: "#000"
+        backgroundColor: "#000",
+        flexGrow: 1,
     },
     answer: {
         
