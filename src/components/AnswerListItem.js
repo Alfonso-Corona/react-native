@@ -1,7 +1,11 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { AntDesign, Entypo } from '@expo/vector-icons';
+import {decode} from 'html-entities';
+import { useEffect } from 'react';
+import Markdown from "@valasolutions/react-native-markdown";
 
 const AnswerListItem = ({ answer }) => {
+
     return (
         <View style={styles.container}>
             <View>
@@ -13,7 +17,9 @@ const AnswerListItem = ({ answer }) => {
                 )}
             </View>
             <View style={styles.containerBody}>
-                <Text style={styles.body}>{answer.body_markdown}</Text>
+                <Markdown style={styles.body}>
+                    {decode(answer.body_markdown)}
+                </Markdown>
                 <Text style={styles.time}>
                     answered {new Date(answer.creation_date * 1000).toDateString()}
                 </Text>
@@ -38,6 +44,10 @@ const styles = StyleSheet.create({
         borderColor: 'lightgray',
         flex: 1,
         flexGrow: 1,
+        backgroundColor: '#575757',
+        borderRadius: 10,
+        paddingHorizontal: 15,
+        marginLeft: 5,
     },
     leftContainer: {
         paddingHorizontal: 10,

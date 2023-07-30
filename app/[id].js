@@ -5,7 +5,8 @@ import answers from "../data/answers.json";
 import { StyleSheet } from 'react-native';
 import QuestionHeader from '../src/components/QuestionHeader';
 import AnswerListItem from '../src/components/AnswerListItem';
-
+import { useEffect } from 'react';
+import { decode } from 'html-entities';
 
 const QuestionDetailsPage = () => {
     const { id } = useSearchParams();
@@ -14,7 +15,7 @@ const QuestionDetailsPage = () => {
     if (!question) {
         return <Text>Question not find</Text>
     }
-
+    
     return (
         <View style={styles.container}>
             <FlatList

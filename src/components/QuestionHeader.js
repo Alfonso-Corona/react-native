@@ -1,14 +1,17 @@
 import { Text, View, StyleSheet, Pressable } from "react-native";
-import { Link } from "expo-router";
+import { decode } from 'html-entities';
+import Markdown from "@valasolutions/react-native-markdown";
 
 const QuestionHeader = ({ question }) => {
     return (
 
         <View style={styles.container}>
-            <Text style={styles.title}>{question.title}</Text>
+            <Text style={styles.title}>{decode(question.title)}</Text>
             <Text style={styles.stats}>{question.score} votes · {question.answer_count} answers · {question.view_count} views</Text>
             <View style={styles.separator} />
-            <Text style={styles.body}>{question.body_markdown}</Text>
+            <Markdown style={styles.body}>
+                {decode(question.body_markdown)}
+            </Markdown>
             <View style={styles.tags}>
                 {question.tags.map(tag => (
                     <Text key={tag} style={styles.tag}>{tag}</Text>
@@ -25,7 +28,7 @@ const styles = StyleSheet.create({
         //marginRight: 20
     },
     container: {
-        backgroundColor: '#373737',
+        backgroundColor: '#575757',
         borderRadius: 10,
         padding: 15,
         borderBottomWidth: 0.5,
@@ -38,13 +41,12 @@ const styles = StyleSheet.create({
         color: '#878787'
     },
     title: {
-        color: '#0063bf',
+        color: 'rgb(47, 112, 251)',
         marginVertical: 5,
         fontSize: 20,
         lineHeight: 28
     },
     body: {
-        color: "#828282",
         lineHeight: 18,
         color: '#fff'
     },

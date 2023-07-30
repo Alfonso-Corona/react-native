@@ -1,14 +1,17 @@
 import { Text, View, StyleSheet, Pressable } from "react-native";
 import { Link } from "expo-router";
+import {decode} from 'html-entities';
+import { useEffect } from "react";
 
 const QuestionListItem = ({ question }) => {
+
     return (
         <View style={styles.container}>
             <Text style={styles.stats}>{question.score} votes · {question.answer_count} answers · {question.view_count} views</Text>
             <Link style={styles.link} href={`/${question.question_id}`}>
-                <Text style={styles.title}>{question.title}</Text>
+                <Text style={styles.title}>{decode(question.title)}</Text>
             </Link>
-            <Text numberOfLines={2} style={styles.body}>{question.body_markdown}</Text>
+            <Text numberOfLines={2} style={styles.body}>{decode(question.body_markdown)}</Text>
             <View style={styles.tags}>
                 {question.tags.map(tag => (
                     <Text key={tag} style={styles.tag}>{tag}</Text>
